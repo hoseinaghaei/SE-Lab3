@@ -55,6 +55,43 @@
 حال کد را تغییر می‌دهیم و می‌بینیم که هردو تست پاس می‌شوند.
 <img src="tdd/image/pass.png">
 
+## TDD-Part2
+در این بخش ابتدا ۹ تست جدید اضافه می‌کنیم و اجرا می‌کنیم. این تست‌ها شامل تست انواع ورودی‌های درست و نادرست و خروجی‌های متفاوت است.
+می‌بینیم که در ابتدا همه آنها fail می‌شوند.
+<img src="tdd/image/fail2.png">
+
+۲ تابع را به صورت زیر کامل می‌کنیم.
+
+<div dir="ltr">
+
+```java
+    public ArrayList<Student> searchStudents(SearchByType searchByType, ArrayList<Object> keys) {
+        if (searchByType == SearchByType.ID) {
+            return students.stream().filter(student -> keys.contains(student.getId())).collect(Collectors.toCollection(ArrayList::new));
+        }
+        if (searchByType == SearchByType.NAME) {
+            return students.stream().filter(student -> keys.contains(student.getName())).collect(Collectors.toCollection(ArrayList::new));
+        }
+        throw new InvalidParameterException();
+    }
+```
+```java
+    public ArrayList<Book> searchBooks(SearchByType searchByType, ArrayList<Object> keys) {
+        if (searchByType == SearchByType.ID) {
+            return books.stream().filter(book -> keys.contains(book.getId())).collect(Collectors.toCollection(ArrayList::new));
+        }
+        if (searchByType == SearchByType.TITLE) {
+            return books.stream().filter(books -> keys.contains(books.getTitle())).collect(Collectors.toCollection(ArrayList::new));
+        }
+        if (searchByType == SearchByType.AUTHOR) {
+            return books.stream().filter(books -> keys.contains(books.getAuthor())).collect(Collectors.toCollection(ArrayList::new));
+        }
+        throw new InvalidParameterException();    
+    }
+```
+<div dir="rtl">
+حال می‌بینیم که هز ۹ تست پاس می‌شوند.
+<img src="tdd/image/pass2.png">
 
 ## پرسش اول
 

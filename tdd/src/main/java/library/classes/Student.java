@@ -3,9 +3,9 @@ package library.classes;
 import java.util.ArrayList;
 
 public class Student {
-    private String name;
-    private int id;
-    private ArrayList<Book> books;
+    private final String name;
+    private final int id;
+    private final ArrayList<Book> books;
 
     public Student(String name, int id) {
         this.name = name;
@@ -23,6 +23,10 @@ public class Student {
 
     public void addBook(Book book) {
         this.books.add(book);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void removeBook(Book book) {
