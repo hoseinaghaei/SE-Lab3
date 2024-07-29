@@ -1,6 +1,8 @@
 package library.classes;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Library {
     private ArrayList<Book> books;
@@ -80,8 +82,13 @@ public class Library {
      * @return             The list of students that match the search criteria. Returns null if search type is title or author.
      */
     public ArrayList<Student> searchStudents(SearchByType searchByType, ArrayList<Object> keys) {
-        // TODO complete function
-        return null;
+        if (searchByType == SearchByType.ID) {
+            return students.stream().filter(student -> keys.contains(student.getId())).collect(Collectors.toCollection(ArrayList::new));
+        }
+        if (searchByType == SearchByType.NAME) {
+            return students.stream().filter(student -> keys.contains(student.getName())).collect(Collectors.toCollection(ArrayList::new));
+        }
+        throw new InvalidParameterException();
     }
 
     /**
@@ -93,8 +100,16 @@ public class Library {
      * @return             The list of books that match the search criteria. Returns null if search type is name.
      */
     public ArrayList<Book> searchBooks(SearchByType searchByType, ArrayList<Object> keys) {
-        // TODO complete function
-        return null;
+        if (searchByType == SearchByType.ID) {
+            return books.stream().filter(book -> keys.contains(book.getId())).collect(Collectors.toCollection(ArrayList::new));
+        }
+        if (searchByType == SearchByType.TITLE) {
+            return books.stream().filter(books -> keys.contains(books.getTitle())).collect(Collectors.toCollection(ArrayList::new));
+        }
+        if (searchByType == SearchByType.AUTHOR) {
+            return books.stream().filter(books -> keys.contains(books.getAuthor())).collect(Collectors.toCollection(ArrayList::new));
+        }
+        throw new InvalidParameterException();
     }
 
     /**
