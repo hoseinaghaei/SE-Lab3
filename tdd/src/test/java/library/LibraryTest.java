@@ -184,4 +184,29 @@ public class LibraryTest {
         // Assert
         Assert.assertTrue(result.isEmpty());
     }
+
+    @Test
+    public void lendBookNotINLibrary() {
+        // Arrange
+        var book5 = new Book("Book-5", "Author-1", 14);
+
+        // Act
+        var result = library.lendBook(book5, student1);
+
+        // Assert
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void returnBookThatNotHave() {
+        // Arrange
+        var book5 = new Book("Book-5", "Author-1", 14);
+        library.addStudent(student1);
+
+        // Act
+        var result = library.returnBook(book5, student1);
+
+        // Assert
+        Assert.assertFalse(result);
+    }
 }
