@@ -1,4 +1,4 @@
-package main.classes;
+package library.classes;
 
 import java.util.ArrayList;
 
@@ -36,6 +36,10 @@ public class Library {
             System.out.println("!! Student already has the book.");
             return false;
         }
+        if (!students.contains(student)) {
+            System.out.println("!! Student " + student.getName() + " not registered.");
+            return false;
+        }
 
         this.books.remove(book);
         student.addBook(book);
@@ -58,6 +62,7 @@ public class Library {
         }
         if (student.hasBook(book)) {
             this.books.add(book);
+            student.removeBook(book);
             System.out.println(student.getName() + " returned " + book.getTitle() + ".");
             return true;
         }
