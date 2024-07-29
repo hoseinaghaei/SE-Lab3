@@ -11,6 +11,50 @@
 
 <img width="1313" alt="Screenshot 2024-07-28 at 21 03 23" src="https://github.com/user-attachments/assets/efd69cb7-75a4-49a2-8c9e-3b36debf4d7a">
 
+## TDD-Part1
+۲ مشکل در کد وجود دارد که برای هرکدام جداگانه ابتدا تست می‌نویسیم:
+مشکل اول: کتاب می‌تواند به یک دانش‌آموز که عضو کتابخانه نیست نیز قرض داده شود.
+
+<div dir="ltr">
+
+```java
+    @Test
+    public void bookShouldNotBeLentToStudentThatIsNotInLibrary() {
+        //Arrange
+        library.addStudent(student1);
+    
+        //Act
+        library.lendBook(book1, student2);
+    
+        //Assert
+        Assert.assertFalse(student2.hasBook(book1));
+}
+```
+<div dir="rtl">
+مشکل دوم: کتاب پس از بازگشت، از لیست کتاب‌های دانش‌ اموز حذف نمی‌شود.
+<div dir="ltr">
+
+```java
+    @Test
+    public void bookShouldBeRemovedFromStudentAfterReturning() {
+        //Arrange
+        library.addStudent(student1);
+        library.lendBook(book1, student1);
+    
+        //Act
+        library.returnBook(book1, student1);
+    
+        //Assert
+        Assert.assertFalse(student1.hasBook(book1));
+}
+```
+<div dir="rtl">
+در ابتدا هردو این تست fail می‌شوند.
+<img src="tdd/image/fail.png">
+
+حال کد را تغییر می‌دهیم و می‌بینیم که هردو تست پاس می‌شوند.
+<img src="tdd/image/pass.png">
+
 
 ## پرسش اول
 
